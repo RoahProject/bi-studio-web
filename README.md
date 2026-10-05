@@ -29,3 +29,14 @@ Install Node.js 22 or newer. In this folder run `npm install`, then `npm run dev
 
 ## Verification
 Production build and local mocked API tests can validate persistence/conflict handling; live private repository writes and deployment require your token and account, which are intentionally not provided to the assistant.
+
+## Executive View
+The website opens in Executive View. Five cards count individual projects: Total Projects, Not Yet Started, In Progress, Completed, Overdue. Project Workspace retains detailed cards, tasks, subtasks, requirements, milestones, and editing.
+
+The Executive table has one row per department: Department | Scope | Start | Finish | Status (RAG). Scope displays up to two brief project scopes and a count of additional initiatives; it does not list all project details. Start is the earliest known project start, Finish the latest known planned finish. A department is Red if any unfinished project is overdue; Amber if unfinished work has not started, has no valid finish, or finishes within seven days; otherwise Green. Completed departments are Green. Overdue is also included in either Not Yet Started or In Progress.
+
+New/edit project forms include Department (text), Start Date, Scope, and Finish Date (the existing due date). Existing JSON remains compatible; old projects show Unassigned and no start date until edited. No migration or replacement of private data is required.
+
+Export Excel downloads a real XLSX file with Executive Summary and Department Portfolio worksheets, date formatting, RAG colors, frozen headers, and filters. It excludes tasks, subtasks, uploaded documents, tokens, and detailed project listings.
+
+Executive View is a presentation view, not a separate permission role. For a read-only executive, provision their own GitHub token limited to Contents read for the private data repository. Never share your read/write token.
