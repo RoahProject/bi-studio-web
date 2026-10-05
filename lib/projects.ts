@@ -24,6 +24,10 @@ export function normalizeProject(p:Project):Project{
  }),milestones:Array.isArray(p.milestones)?p.milestones:createDefaultMilestones(p.due)};
 }
 export function completion(p:Project){const units=p.tasks.flatMap(t=>t.subtasks.length?t.subtasks:[t]);return {total:units.length,done:units.filter(t=>t.done).length};}
+export function projectStatus(p:Project):'Not Yet Started'|'In Progress'|'Completed'{
+ if(p.stage==='Deployed')return 'Completed';
+ return completion(p).done===0&&!p.milestones.some(m=>m.done)?'Not Yet Started':'In Progress';
+}
 export const progress=(p:Project)=>{const c=completion(p);return c.total?Math.round(c.done/c.total*100):0;};
 export const samples:Project[] = [
  ['Sales performance','Revenue, targets, and growth across branches.','Model & DAX','High','2026-10-16','Oracle · Excel',3],

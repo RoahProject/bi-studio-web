@@ -15,6 +15,7 @@ Install Node.js 22 or newer. In this folder run `npm install`, then `npm run dev
 
 ## Behavior
 - Default tasks, subtasks, milestones, priorities, progress, project search, stages, and deadlines.
+- Summary: Total Projects, Not Yet Started, In Progress, Completed, Overdue. A project is not yet started when no task/subtask or milestone is completed; Deployed projects count as completed. Overdue overlaps either unfinished status.
 - JSON saves commit directly to the private data repository. No database, paid API, or Supabase dependency.
 - Token is held only in page memory; a refresh or new device requires re-entry. No passwords or token are cached.
 - Workspace is cached in IndexedDB, including documents. While signed in, interrupted network saves stay in the browser and retry on focus, reconnect, or the next check (every 60 seconds). Opening a new session requires an online token check.
